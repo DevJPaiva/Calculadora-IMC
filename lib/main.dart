@@ -4,9 +4,9 @@ import 'funçoes/funções.dart';
 
 void main(){
 
-  String? nome;
-  double? altura;
-  double? peso;
+  String nome;
+  double altura;
+  double peso;
 
   print('');
   print('Bem vindo ao calculo de IMC');
@@ -22,7 +22,7 @@ void main(){
     stdout.write('Qual sua altura(m)? ');
     var alturaStr = stdin.readLineSync();
     try {
-      altura = double.parse(alturaStr!);
+      altura = double.parse(alturaStr);
       if (altura <= 0) {
         print('Altura deve ser um valor positivo!');
       }
@@ -35,7 +35,7 @@ void main(){
     stdout.write('Qual seu peso(kg)? ');
     var pesoStr = stdin.readLineSync();
     try {
-      peso = double.parse(pesoStr!);
+      peso = double.parse(pesoStr);
       if (peso <= 0) {
         print('Peso deve ser um valor positivo!');
       }

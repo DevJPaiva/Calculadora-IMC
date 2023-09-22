@@ -1,0 +1,8 @@
+name: calculadora_imc
+description: Calculadora desenvolvida para o bootcamp Santander e DIO.
+
+environment:
+  sdk: '>=2.10.0 <3.0.0' # Adicione esta linha
+
+dependencies:
+  test: any
