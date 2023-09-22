@@ -1,48 +1,58 @@
 import 'dart:io';
 import 'classes/classe_pessoa.dart';
+import 'funçoes/funções.dart';
 
 void main(){
+
+  String? nome;
+  double? altura;
+  double? peso;
 
   print('');
   print('Bem vindo ao calculo de IMC');
   print('');
 
-  //Informações que o usuario fornece
-  stdout.write('Qual seu nome? ');
-  var nome = stdin.readLineSync();
-
-  stdout.write('Qual sua altura(m)? ');
-  var alturaStr = stdin.readLineSync();
-  var altura = double.parse(alturaStr!);
-
-  stdout.write('Qual seu peso(kg)? ');
-  var pesoStr = stdin.readLineSync();
-  var peso = double.parse(pesoStr!);
-
-  var pessoa = Pessoa(nome!, altura, peso);
-
-
-  //Calculo e resultado
-  var imc = pessoa.peso / (pessoa.altura * pessoa.altura);
-  print('${pessoa.nome}, seu IMC é: $imc');
-
-  //Loop condicional para mostrar a msg
-  if (imc < 16){
-    print('Magreza grave');
-  } else if (imc < 17){
-    print('Magreza moderada');
-  } else if (imc < 18.5) {
-    print('Magreza leve');
-  } else if (imc < 25) {
-    print('Saúdavel');
-  } else if (imc < 30){
-    print('Sobre peso');
-  } else if (imc < 35){
-    print('Obesidade grau 1');
-  } else if (imc < 40){
-    print('Obesidade grau 2');
-  } else {
-    print('Obesidade Morbida');
+  //Informações que o usuario fornece;
+  while(nome == null || nome.isEmpty) {
+    stdout.write('Qual seu nome? ');
+    nome = stdin.readLineSync();
   }
 
+  while (altura == null || altura <= 0) {
+    stdout.write('Qual sua altura(m)? ');
+    var alturaStr = stdin.readLineSync();
+    try {
+      altura = double.parse(alturaStr!);
+      if (altura <= 0) {
+        print('Altura deve ser um valor positivo!');
+      }
+    } catch (e) {
+      print('Digite uma altura Válida!');
+    }
+  }
+
+  while (peso == null || peso <= 0) {
+    stdout.write('Qual seu peso(kg)? ');
+    var pesoStr = stdin.readLineSync();
+    try {
+      peso = double.parse(pesoStr!);
+      if (peso <= 0) {
+        print('Peso deve ser um valor positivo!');
+      }
+    } catch (e) {
+      print('Digite um peso Válido!');
+    }
+  }
+
+  var pessoa = Pessoa(nome, altura, peso);
+
+
+  //Calculo e resultado;
+  var imc = pessoa.peso / (pessoa.altura * pessoa.altura);
+  print('${pessoa.nome}, seu IMC é: ${imc.toStringAsFixed(2)}');
+
+  //Função  que verifica IMC seguindo a tabela;
+  verificaImc(imc);
+
+  print('FIM');
 }
